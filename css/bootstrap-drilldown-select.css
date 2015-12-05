@@ -1,0 +1,19 @@
+.btn.drilldown .caret {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.btn.drilldown {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hasChild > a:after {
+  content: "";
+  float: right;
+  margin-top: 6px;
+  margin-right: -10px;
+  border-left: 4px dashed;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+/*# sourceMappingURL=bootstrap-drilldown-select.css.map */

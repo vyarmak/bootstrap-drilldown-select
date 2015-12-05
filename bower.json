@@ -1,0 +1,32 @@
+{
+  "name": "bootstrap-drilldown-select",
+  "description": "Replacement for select with drilldown possibility",
+  "main": "js/bootstrap-drilldown-select.js",
+  "authors": [
+    "Viktor Yarmak"
+  ],
+  "license": "GPL",
+  "keywords": [
+    "bootstrap",
+    "dropdown",
+    "jquery-plugin",
+    "submenu",
+    "select",
+    "drilldown"
+  ],
+  "homepage": "https://github.com/vyarmak/bootstrap-drilldown-select",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "2.*",
+    "bootstrap": "*"
+  }
+}

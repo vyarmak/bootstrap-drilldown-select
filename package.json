@@ -1,0 +1,41 @@
+{
+  "name": "bootstrap-drilldown-select",
+  "version": "0.0.1",
+  "description": "Replacement for select with drilldown possibility",
+  "keywords": [
+    "bootstrap",
+    "dropdown",
+    "jquery-plugin",
+    "submenu",
+    "select",
+    "drilldown"
+  ],
+  "homepage": "https://github.io/vyarmak/bootstrap-drilldown-select",
+  "author": {
+    "name": "Viktor Yarmak",
+    "url": "https://github.com/vyarmak"
+  },
+  "repository": "vyarmak/bootstrap-drilldown-select",
+  "license": "GPL",
+  "files": [
+    "example",
+    "js/**/*.js",
+    "less",
+    "LICENSE"
+  ],
+  "main": "dist/js/bootstrap-drilldown-select.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "devDependencies": {
+    "jquery": "2.*",
+    "bootstrap": "*",
+    "grunt": "*",
+    "grunt-banner": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-uglify": "*",
+    "load-grunt-tasks": "*",
+    "octicons": "*"
+  }
+}
