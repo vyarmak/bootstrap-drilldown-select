@@ -10,7 +10,7 @@
       keyName: 'id', // name of key parameter in data array
       valueName: 'name', // name of value parameter in data array
       listName: 'list', // name of list parameter in data array
-      appendValue: false, // append value or replace it
+      appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
       /** function that will be called on select of final element */
       onSelected: function(event) {
