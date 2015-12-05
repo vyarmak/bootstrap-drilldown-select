@@ -22,7 +22,7 @@ bootstrap-drilldown-select/
 ```
 ## Examples
 
-For usage example visit [exampels](https://github.com/vyarmak/bootstrap-drilldown-select/#examples) section.
+For usage example visit [examples](https://vyarmak.github.com/bootstrap-drilldown-select/) section.
 
 ## Min Requirements
 

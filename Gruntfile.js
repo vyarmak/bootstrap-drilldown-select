@@ -31,9 +31,13 @@ module.exports = function(grunt) {
     },
     uglify: {
       core: {
-        expand: true,
-        src: 'js/*.js',
-        ext: '.min.js'
+        options: {
+          sourceMap: true,
+          sourceMapName: 'js/bootstrap-drilldown-select.js.map'
+        },
+        files: {
+          'js/bootstrap-drilldown-select.min.js': ['js/bootstrap-drilldown-select.js']
+        }
       }
     }
   });

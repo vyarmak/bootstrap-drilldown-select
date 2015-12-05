@@ -10,7 +10,7 @@
     "select",
     "drilldown"
   ],
-  "homepage": "https://github.io/vyarmak/bootstrap-drilldown-select",
+  "homepage": "https://vyarmak.github.io/bootstrap-drilldown-select",
   "author": {
     "name": "Viktor Yarmak",
     "url": "https://github.com/vyarmak"
@@ -19,7 +19,8 @@
   "license": "GPL",
   "files": [
     "example",
-    "js/**/*.js",
+    "js/*.js",
+    "css",
     "less",
     "LICENSE"
   ],
