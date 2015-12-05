@@ -12,6 +12,7 @@
       listName: 'list', // name of list parameter in data array
       appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
+      restartOnClick: true, // restart from top on button click
       /** function that will be called on select of final element */
       onSelected: function(event) {
       	alert($(event.target).data('id'));
@@ -27,12 +28,13 @@
       /** get this element */
       var element = $(this);
       /** set default placeholder */
-      var textHolder = element.find('span.text');
-      textHolder.html(textHolder.attr('placeholder'));
+      element.html(element.attr('placeholder'));
       /** get parent elment */
       var parent = element.parent();
-      /** create a dropdown object */
-      makeDropdown(element, null, '', false);
+      if (!defaults.restartOnClick) {
+        /** create a dropdown object */
+        makeDropdown(element, null, '', false);
+      }
       /** hook event that will fix size and position */
       parent.on('show.bs.dropdown', function(event) {
 	      var target = $(event.relatedTarget);
@@ -40,6 +42,16 @@
 	      holder.width(target.outerWidth() - 2);
 	      holder.css('left', defaults.left);
 	      isVisible = true;
+      });
+      /** hook on click event (clear text to placeholder) */
+      element.on('click', function(event) {
+        /** set default placeholder */
+        var element = $(event.target);
+        element.html(element.attr('placeholder'));
+        if (defaults.restartOnClick) {
+          /** create a dropdown object */
+          makeDropdown(element, null, '', false);
+        }
       });
     });
 
@@ -85,8 +97,7 @@
         tempPathArray.pop();
         childItem = $('<li><a href="#" data-path="' + tempPathArray.join(',') + '"><b>' + defaults.textBack + '</b></a></li>');
         childItem.on('click', function(event) {
-          var textHolder = element.find('span.text');
-          textHolder.html(textHolder.attr('placeholder'));
+          element.html(element.attr('placeholder'));
           makeDropdown(element, event, $(event.target).closest('[data-path]').data('path'), true);
           return false;
         });
@@ -101,12 +112,11 @@
         childItem.on('click', function(event) {
           event.preventDefault();
           var eventTarget = $(event.target);
-          var textHolder = element.find('span.text');
-          if (textHolder.html() == textHolder.attr('placeholder')) {
-            textHolder.html('');
+          if (element.html() == element.attr('placeholder')) {
+            element.html('');
           }
-          var text = defaults.appendValue ? (textHolder.html() ? textHolder.html() + ' - ' : '') + eventTarget.html() : eventTarget.html();
-          textHolder.html(text);
+          var text = defaults.appendValue ? (element.html() ? element.html() + ' - ' : '') + eventTarget.html() : eventTarget.html();
+          element.html(text);
           makeDropdown(element, event, eventTarget.closest('[data-path]').data('path'), true);
           return false;
         });
