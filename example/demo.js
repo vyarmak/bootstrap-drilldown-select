@@ -5,14 +5,9 @@
  */
 
 $(document).ready(function() {
-  $('.drilldown').drilldownSelect({ data: data});
-
-  $('.drilldown').on('click', function(event) {
-    var target = $(event.target);
-    var holder = target.parent().find('.dropdown-menu');
-    holder.width(target.outerWidth() - 2);
-    holder.css('left', 15);
-  });
+  $('#drilldown1').drilldownSelect({ appendValue: true, data: data});
+  $('#drilldown2').drilldownSelect({ appendValue: false, data: data});
+  $('#drilldown3').drilldownSelect({ appendValue: false, data: data, textBack: 'Go to previous section...'});
 });
 
 var data = [
