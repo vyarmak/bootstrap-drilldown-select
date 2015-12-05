@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-drilldown-select",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Replacement for select with drilldown possibility",
   "keywords": [
     "bootstrap",
