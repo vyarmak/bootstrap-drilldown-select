@@ -12,6 +12,14 @@ $(document).ready(function() {
 
 var data = [
   {
+    "id": 0,
+    "name": "Will choose later"
+  },
+  {
+    "id": 999999,
+    "name": "I have my own option"
+  },
+  {
     "id": 1,
     "name": "Option 1",
     "list": [

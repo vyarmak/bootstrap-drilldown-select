@@ -51,7 +51,8 @@
      * @param  {Boolean} show    show or not a menu
      */
     function makeDropdown(element, event, path, show) {
-      var pathArray = (path) ? (path + '').split(',') : [];
+      path += '';
+      var pathArray = (path != null && path != '') ? (path).split(',') : [];
       var data = defaults.data;
       if (pathArray.length) {
         for (var i = 0; i < pathArray.length; i++) {
