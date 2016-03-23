@@ -12,6 +12,10 @@
       listName: 'list', // name of list parameter in data array
       appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
+      /** function that will be called when an element be unselected**/
+      onUnselect: function() {
+        alert('unselected');
+      },
       /** function that will be called on select of final element */
       onSelected: function(event) {
       	alert($(event.target).data('id'));
@@ -21,6 +25,8 @@
     var params = $.extend(defaults, params);
     /** @type {Boolean} flag to define if  */
     var isVisible = false;
+    /** @type {Boolean} there is a selected item? */
+    var hasSelected = false;
 
     /** Hook function on each element */
     return this.each(function(options) {
@@ -69,11 +75,16 @@
         defaults.onSelected(event);
         element.dropdown('toggle');
         isVisible = false;
+        hasSelected = true;
         return false;
       }
       if (isVisible) {
         element.dropdown('toggle');
-        isVisible = false;        
+        isVisible = false; 
+        if (hasSelected) {
+          hasSelected = false;
+          defaults.onUnselect();
+        }       
       }
       var parent = element.parent();
       parent.find('ul.dropdown-menu').remove();
