@@ -12,6 +12,8 @@
       listName: 'list', // name of list parameter in data array
       appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
+      showPath: true, // show all path to the child
+      pathSeparator: '<b> > </b>', // a separator to the path items
       /** function that will be called when an element be unselected**/
       onUnselect: function() {
         alert('unselected');
@@ -48,6 +50,22 @@
 	      isVisible = true;
       });
     });
+
+    function buildPathValue(path, dataToSearch) {
+      var pathValues = '';
+      if (path.length) {
+        var pathCurrentId = path.shift();
+        if (dataToSearch) {
+          for (var i = 0; i < dataToSearch.length; i++) {
+            if (dataToSearch[i].id == pathCurrentId) {
+              pathValues += dataToSearch[i][defaults.valueName] + (path.length ? defaults.pathSeparator + buildPathValue(path, dataToSearch[i][defaults.listName]) : '');
+              break;
+            }
+          }
+        }
+      }
+      return pathValues;
+    }
 
     /**
      * Make a dropdown menu
@@ -116,7 +134,14 @@
           if (textHolder.html() == textHolder.attr('placeholder')) {
             textHolder.html('');
           }
-          var text = defaults.appendValue ? (textHolder.html() ? textHolder.html() + ' - ' : '') + eventTarget.html() : eventTarget.html();
+
+          var path = defaults.showPath ? eventTarget.data('path') : eventTarget.data('id');
+          // if path is a String then its a subobject, because it will contains ','
+          var pathArray = (typeof path === 'string' || path instanceof String) ? (path).split(',') : [path];
+
+          var text = buildPathValue(pathArray, defaults.data);
+          text = defaults.appendValue ? (textHolder.html() ? textHolder.html() + ' - ' : '') + text : text;
+
           textHolder.html(text);
           makeDropdown(element, event, eventTarget.closest('[data-path]').data('path'), true);
           return false;
