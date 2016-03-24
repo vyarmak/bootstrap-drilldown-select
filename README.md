@@ -2,8 +2,8 @@
 
 ## Quick start
 
-* Clone the repo: `git clone https://github.com/vyarmak/bootstrap-drilldown-select.git`
-* Install with [Bower](http://bower.io): `bower install bootstrap-drilldown-select`
+* Clone the repo: `git clone https://github.com/ricardoreiter/bootstrap-drilldown-select-extended.git`
+* Install with [Bower](http://bower.io): `bower install bootstrap-drilldown-select-extended`
 
 ### What's included
 ```
