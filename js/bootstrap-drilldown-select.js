@@ -31,7 +31,7 @@
     var hasSelected = false;
 
     /** Hook function on each element */
-    return this.each(function(options) {
+    this.each(function(options) {
       /** get this element */
       var element = $(this);
       /** set default placeholder */
@@ -43,13 +43,26 @@
       makeDropdown(element, null, '', false);
       /** hook event that will fix size and position */
       parent.on('show.bs.dropdown', function(event) {
-	      var target = $(event.relatedTarget);
-	      var holder = $(event.target).find('.dropdown-menu');
-	      holder.width(target.outerWidth() - 2);
-	      holder.css('left', defaults.left);
-	      isVisible = true;
+        var target = $(event.relatedTarget);
+        var holder = $(event.target).find('.dropdown-menu');
+        holder.width(target.outerWidth() - 2);
+        holder.css('left', defaults.left);
+        isVisible = true;
       });
     });
+    
+    this.setItemSelected = function(path) {
+      var copyPath = path.slice(0);
+      var textHolder = this.find('span.text');
+      var text = formatTextValue(textHolder.html(), path, defaults.data);
+      hasSelected = true;
+      textHolder.html(text);
+
+      copyPath.pop();
+      makeDropdown(this, null, copyPath, false);
+    };
+
+    return this;
 
     function buildPathValue(path, dataToSearch) {
       var pathValues = '';
@@ -65,7 +78,13 @@
         }
       }
       return pathValues;
-    }
+    };
+
+    function formatTextValue(actualValue, itemPath, data) {
+      var text = buildPathValue(itemPath, data);
+      text = defaults.appendValue ? (actualValue ? actualValue + ' - ' : '') + text : text;
+      return text;
+    };
 
     /**
      * Make a dropdown menu
@@ -75,8 +94,11 @@
      * @param  {Boolean} show    show or not a menu
      */
     function makeDropdown(element, event, path, show) {
-      path += '';
-      var pathArray = (path != null && path != '') ? (path).split(',') : [];
+      var pathArray = path;
+      if (!(path instanceof Array)) {
+        path += '';
+        var pathArray = (path != null && path != '') ? (path).split(',') : [];
+      }
       var data = defaults.data;
       if (pathArray.length) {
         for (var i = 0; i < pathArray.length; i++) {
@@ -139,8 +161,7 @@
           // if path is a String then its a subobject, because it will contains ','
           var pathArray = (typeof path === 'string' || path instanceof String) ? (path).split(',') : [path];
 
-          var text = buildPathValue(pathArray, defaults.data);
-          text = defaults.appendValue ? (textHolder.html() ? textHolder.html() + ' - ' : '') + text : text;
+          var text = formatTextValue(textHolder.html(), pathArray, defaults.data);
 
           textHolder.html(text);
           makeDropdown(element, event, eventTarget.closest('[data-path]').data('path'), true);
@@ -156,4 +177,5 @@
       }
     };
   };
+
 })(jQuery);

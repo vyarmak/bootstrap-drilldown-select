@@ -7,7 +7,8 @@
 $(document).ready(function() {
   $('#drilldown1').drilldownSelect({ appendValue: true, data: data});
   $('#drilldown2').drilldownSelect({ appendValue: false, data: data});
-  $('#drilldown3').drilldownSelect({ appendValue: false, data: data, textBack: 'Go to previous section...'});
+  var test = $('#drilldown3').drilldownSelect({ appendValue: false, data: data, textBack: 'Go to previous section...'});
+  test.setItemSelected([1, 18]);
 });
 
 var data = [
