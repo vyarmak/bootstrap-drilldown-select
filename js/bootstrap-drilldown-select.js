@@ -10,6 +10,7 @@
       keyName: 'id', // name of key parameter in data array
       valueName: 'name', // name of value parameter in data array
       listName: 'list', // name of list parameter in data array
+      activeName: 'active', // name of the active parameter in data array
       appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
       showPath: true, // show all path to the child
@@ -143,32 +144,45 @@
         });
         menu.append(childItem);
       }
+
       for (var i = 0; i < data.length; i++) {
         dataItem = data[i];
         tempPathArray = pathArray.slice();
         tempPathArray.push(dataItem[defaults.keyName]);
+
+        var disabled = (dataItem[defaults.activeName] === false) ? 'disabled' : '';
         var hasChild = (dataItem[defaults.listName] != undefined && dataItem[defaults.listName] && dataItem[defaults.listName].length) ? 'hasChild' : '';
-        childItem = $('<li class="' + hasChild + '"><a href="#" data-path="' + tempPathArray.join(',') + '" data-id="' + dataItem[defaults.keyName] + '">' + dataItem[defaults.valueName] + '</a></li>');
-        childItem.on('click', function(event) {
-          event.preventDefault();
-          var eventTarget = $(event.target);
-          var textHolder = element.find('span.text');
-          if (textHolder.html() == textHolder.attr('placeholder')) {
-            textHolder.html('');
-          }
 
-          var path = defaults.showPath ? eventTarget.data('path') : eventTarget.data('id');
-          // if path is a String then its a subobject, because it will contains ','
-          var pathArray = (typeof path === 'string' || path instanceof String) ? (path).split(',') : [path];
+        var chieldItemElement = '<li class="' + hasChild + ' ' + disabled +'">' + 
+                                    '<a href="#" data-path="' + tempPathArray.join(',') + '" data-id="' + dataItem[defaults.keyName] + '">' + dataItem[defaults.valueName] + '</a>' +
+                                '</li>';
 
-          var text = formatTextValue(textHolder.html(), pathArray, defaults.data);
+        childItem = $(chieldItemElement);
 
-          textHolder.html(text);
-          makeDropdown(element, event, eventTarget.closest('[data-path]').data('path'), true);
-          return false;
-        });
+        if (!disabled) {
+          childItem.on('click', function(event) {
+            event.preventDefault();
+            var eventTarget = $(event.target);
+            var textHolder = element.find('span.text');
+            if (textHolder.html() == textHolder.attr('placeholder')) {
+              textHolder.html('');
+            }
+
+            var path = defaults.showPath ? eventTarget.data('path') : eventTarget.data('id');
+            // if path is a String then its a subobject, because it will contains ','
+            var pathArray = (typeof path === 'string' || path instanceof String) ? (path).split(',') : [path];
+
+            var text = formatTextValue(textHolder.html(), pathArray, defaults.data);
+
+            textHolder.html(text);
+            makeDropdown(element, event, eventTarget.closest('[data-path]').data('path'), true);
+            return false;
+          });
+        }
+
         menu.append(childItem);
       }
+
       menu.insertAfter(element);
       if (show) {
         element.dropdown('toggle');
