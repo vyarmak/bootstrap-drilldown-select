@@ -13,6 +13,7 @@
       activeName: 'active', // name of the active parameter in data array
       appendValue: true, // append value or replace it
       textBack: 'Back...', // text for go back link
+      textDisabled: '', // text for the disabled itens
       showPath: true, // show all path to the child
       pathSeparator: '<b> > </b>', // a separator to the path items
       /** function that will be called when an element be unselected**/
@@ -152,9 +153,10 @@
 
         var disabled = (dataItem[defaults.activeName] === false) ? 'disabled' : '';
         var hasChild = (dataItem[defaults.listName] != undefined && dataItem[defaults.listName] && dataItem[defaults.listName].length) ? 'hasChild' : '';
+        var disabledText = disabled ? defaults.textDisabled : '';
 
         var chieldItemElement = '<li class="' + hasChild + ' ' + disabled +'">' + 
-                                    '<a href="#" data-path="' + tempPathArray.join(',') + '" data-id="' + dataItem[defaults.keyName] + '">' + dataItem[defaults.valueName] + '</a>' +
+                                    '<a href="#" data-path="' + tempPathArray.join(',') + '" data-id="' + dataItem[defaults.keyName] + '">' + dataItem[defaults.valueName] + disabledText + '</a>' +
                                 '</li>';
 
         childItem = $(chieldItemElement);
