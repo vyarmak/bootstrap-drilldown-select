@@ -65,7 +65,7 @@
           }
         }
       }
-      if (!data) {
+      if (!data || data.length == 0) {
         defaults.onSelected(event);
         element.dropdown('toggle');
         isVisible = false;
