@@ -1,6 +1,6 @@
 {
-  "name": "bootstrap-drilldown-select",
-  "version": "0.0.2",
+  "name": "bootstrap-drilldown-select-extended",
+  "version": "0.0.7",
   "description": "Replacement for select with drilldown possibility",
   "keywords": [
     "bootstrap",
@@ -10,12 +10,12 @@
     "select",
     "drilldown"
   ],
-  "homepage": "https://vyarmak.github.io/bootstrap-drilldown-select",
+  "homepage": "https://github.com/ricardoreiter/bootstrap-drilldown-select-extended",
   "author": {
-    "name": "Viktor Yarmak",
+    "name": "Viktor Yarmak, Ricardo Filipe Reiter",
     "url": "https://github.com/vyarmak"
   },
-  "repository": "vyarmak/bootstrap-drilldown-select",
+  "repository": "ricardoreiter/bootstrap-drilldown-select-extended",
   "license": "GPL",
   "files": [
     "example",

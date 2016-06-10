@@ -5,9 +5,10 @@
  */
 
 $(document).ready(function() {
-  $('#drilldown1').drilldownSelect({ appendValue: true, data: data});
+  $('#drilldown1').drilldownSelect({ appendValue: true, data: data, textDisabled: ' (Deactivated)'});
   $('#drilldown2').drilldownSelect({ appendValue: false, data: data});
-  $('#drilldown3').drilldownSelect({ appendValue: false, data: data, textBack: 'Go to previous section...'});
+  var test = $('#drilldown3').drilldownSelect({ appendValue: false, data: data, textBack: 'Go to previous section...'});
+  test.setItemSelected([1, 18]);
 });
 
 var data = [
@@ -18,6 +19,27 @@ var data = [
   {
     "id": 999999,
     "name": "I have my own option"
+  },
+  {
+    "id": 50202,
+    "name": "I'm disabled dude",
+    "active": false
+  },
+  {
+    "id": 50203,
+    "name": "I have my own disabled children",
+    "active": true,
+    "list": [
+      {"id": 1, "name": "Sub 1", "active": true},
+      {"id": 2, "name": "Sub 2", "active": false},
+      {"id": 3, "name": "Sub 3", "active": true},
+      {"id": 4, "name": "Sub 4", "active": false},
+      {"id": 5, "name": "Sub 5", "active": true},
+      {"id": 6, "name": "Sub 6", "active": false},
+      {"id": 7, "name": "Sub 7", "active": true},
+      {"id": 8, "name": "Sub 8", "active": false},
+      {"id": 9, "name": "Sub 9", "active": true}
+    ]
   },
   {
     "id": 1,
