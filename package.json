@@ -29,7 +29,7 @@
     "test": "grunt"
   },
   "devDependencies": {
-    "jquery": "2.*",
+    "jquery": "3.*",
     "bootstrap": "*",
     "grunt": "*",
     "grunt-banner": "*",
